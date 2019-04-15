@@ -31,6 +31,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.ContentType;
+import org.apache.http.impl.client.BasicResponseHandler;
 
 public class RestClient extends RestClientBaseImpl implements IRestClient {
 
@@ -56,18 +57,10 @@ public class RestClient extends RestClientBaseImpl implements IRestClient {
 		return invoke(HTTPMethods.HEAD, uri, headers, null, null);
 	}
 
-	public String getHttpResponseBody(HttpResponse httpResponse) throws Exception {
+	public String getResponseBodyAsString(HttpResponse httpResponse) throws Exception {
 
-		BufferedReader rd = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
-
-		StringBuffer result = new StringBuffer();
-		String line = "";
-		while ((line = rd.readLine()) != null) {
-			result.append(line);
-		}
-
+		String result = new BasicResponseHandler().handleResponse(httpResponse);
 		httpclient.close();
-
 		return result.toString();
 	}
 

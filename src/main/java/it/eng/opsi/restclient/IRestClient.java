@@ -44,7 +44,7 @@ public interface IRestClient {
 
 	public HttpResponse sendDeleteRequest(URI uri, List<Header> headers) throws MalformedURLException;
 
-	public String getHttpResponseBody(HttpResponse httpResponse) throws Exception;
+	public String getResponseBodyAsString(HttpResponse httpResponse) throws Exception;
 
 	public int getStatus(HttpResponse httpResponse);
 
