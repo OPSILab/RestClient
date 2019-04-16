@@ -22,8 +22,6 @@
  ******************************************************************************/
 package it.eng.opsi.restclient;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.List;
